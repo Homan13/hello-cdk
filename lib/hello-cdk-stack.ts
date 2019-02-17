@@ -1,9 +1,13 @@
 import cdk = require('@aws-cdk/cdk');
+import s3 = require('@aws-cdk/aws-s3');
 
 export class HelloCdkStack extends cdk.Stack {
-  constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
-    super(scope, id, props);
+    constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
+        super(scope, id, props);
 
-    // The code that defines your stack goes here
+  	new s3.Bucket(this, 'MyFirstCDKBucket', {
+	    versioned: true
+	    encryption: s3.BucketEncryption.KmsManaged
+	});
   }
 }
